@@ -1,0 +1,30 @@
+
+
+.NewProduct {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+}
+
+.TextField, .NumberField, .TextArea {
+    border: 1px solid var(--color-bold-block);
+    border-radius: 10px;
+    height: 35px;
+    padding: 10px 24px;
+    font-family: var(--font);
+    box-sizing: border-box;
+    font-size: 13px;
+}
+
+.TextArea {
+    min-height: 60px;
+}
+
+.FieldName {
+    margin: 24px 0 10px 0;
+    font-size: 14px;
+}
+
+.NumberField {
+
+}

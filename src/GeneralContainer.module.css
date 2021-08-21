@@ -1,0 +1,12 @@
+
+
+.Container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 24px;
+}
+
+.CrmContainer {
+    display: flex;
+    flex-direction: row;
+}

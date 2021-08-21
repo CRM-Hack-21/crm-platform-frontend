@@ -1,0 +1,8 @@
+
+
+.Selector {
+    border: none;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-family: var(--font);
+}

@@ -1,0 +1,69 @@
+
+.Offer {
+    margin-top: 24px;
+}
+
+.StepLine {
+    width: 2px;
+    background: #dddddd;
+    min-height: 15px;
+    margin: 8px 0;
+    flex-grow: 2;
+}
+
+.OfferStep {
+    display: flex;
+    flex-direction: row;
+}
+
+.Index {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 0;
+    width: 24px;
+    margin-right: 24px;
+}
+
+.OfferTitle, .IndexText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 30px;
+    margin: 0;
+}
+
+.OfferTitle {
+    font-size: 13px;
+}
+
+.OfferStepContent {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+}
+
+.OrderCompleteButton {
+    padding: 12px 24px;
+    border-radius: 20px;
+    border: none;
+    background: var(--color-block);
+    font-family: var(--font);
+    color: #3656FF;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.Total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+.PriceTotal {
+    font-weight: 600;
+}

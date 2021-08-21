@@ -1,0 +1,25 @@
+
+.Product {
+    margin-top: 24px;
+}
+
+.Seller {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 30px;
+}
+
+.Name {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    line-height: 30px;
+}
+
+.Image {
+    width: 50%;
+    margin-top: 10px;
+    border-radius: 20px;
+}
