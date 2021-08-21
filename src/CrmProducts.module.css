@@ -28,3 +28,11 @@
 .NumberField {
 
 }
+
+.AddProductButton {
+    margin: 24px 0;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 15px;
+    background: var(--color-block);
+}

@@ -7,7 +7,15 @@ import styles from "./CrmProducts.module.css";
 export function CrmProductAdd() {
 
 
-    const [ addParams, setAddParams ] = useState({});
+    const [ addParams  , setAddParams ] = useState({
+        name: "",
+        description: "",
+        category_id: 0,
+        main_photo: "",
+        price: 0,
+        old_price: 0,
+        url: ""
+    });
 
 
     const uploadImage = (e: any) => {
@@ -15,7 +23,10 @@ export function CrmProductAdd() {
             var reader = new FileReader();
             reader.onload = function(event: any) {
                 var dataUri = event.target.result;
-                console.log(dataUri);
+                setAddParams({
+                    ...addParams,
+                    main_photo: dataUri,
+                })
            };
            reader.readAsDataURL(e.target.files[0]);
         }
@@ -39,16 +50,33 @@ export function CrmProductAdd() {
         setAddParams({
             ...addParams,
             price: e.target.value,
+            old_price: e.target.value,
         })
     };
     
-    const updateSku = (e: any) => {
-        setAddParams({
-            ...addParams,
-            sku: e.target.value,
-        })
+    // const updateSku = (e: any) => {
+    //     setAddParams({
+    //         ...addParams,
+    //         sku: e.target.value,
+    //     })
+    // };
+
+    const postNewItem = () => {
+
+        fetch("http://192.168.43.81:8085/product", {
+            method: "POST",
+            body: JSON.stringify(addParams),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        console.log(addParams);
     };
 
+    const buttonDisabled = addParams.name === "" || addParams.main_photo === "";
+
+    console.log(buttonDisabled);
 
     return (
         <div className={styles.NewProduct}>
@@ -60,8 +88,11 @@ export function CrmProductAdd() {
             <FieldName>Цена в рублях</FieldName>
             <NumField callback={updatePrice} />
 
-            <FieldName>SKU (опционально)</FieldName>
-            <TextField callback={updateSku} placeholder="Например, PD-345:123456" />
+            {/* <FieldName>Категория</FieldName>
+            <NumField callback={updatePrice} /> */}
+
+            {/* <FieldName>SKU (опционально)</FieldName>
+            <TextField callback={updateSku} placeholder="Например, PD-345:123456" /> */}
 
             <FieldName>Описание</FieldName>
             <TextArea callback={updateDescription} />
@@ -72,6 +103,7 @@ export function CrmProductAdd() {
             <FieldName>Фото</FieldName>
             <input type="file" onChange={uploadImage} />
 
+            <button className={styles.AddProductButton} disabled={buttonDisabled} onClick={postNewItem}>Готово</button>
         </div>
     )
 }

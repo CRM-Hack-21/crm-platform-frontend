@@ -11,11 +11,13 @@
     "@types/node": "^12.20.19",
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
+    "@types/react-query": "^1.2.9",
     "@types/react-router": "^5.1.16",
     "@types/react-router-dom": "^5.1.8",
     "google-maps-react": "^2.0.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-query": "^3.21.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
@@ -23,7 +25,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=80 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -4,9 +4,12 @@
     display: flex;
     flex-direction: column;
     padding: 0 24px;
+    MAX-WIDTH: 600px;
+    align-self: center;
 }
 
 .CrmContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: row ;
+    flex-grow: 2;
 }

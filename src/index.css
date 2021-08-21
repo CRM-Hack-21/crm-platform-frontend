@@ -17,3 +17,9 @@ h1 {
   font-size: 18px;
   font-weight: 500;
 }
+
+#root {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

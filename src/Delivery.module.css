@@ -23,7 +23,7 @@
     font-family: var(--font);
 }
 
-.DeliveryField input::trg {
+.DeliveryField input {
     outline: none;
 }
 
