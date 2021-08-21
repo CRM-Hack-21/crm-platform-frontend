@@ -1,13 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import { Link, Redirect, useLocation } from "react-router-dom";
+import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import styles from "./CrmAuth.module.css";
-import { login } from "./Api";
-import { callbackify } from "util";
+import { login, register, add_vk } from "./Api";
 
 export function LoginPage() {
 
-    const [ credits, setCredits ] = useState({ email: "", password: ""});
+    const [ credits, setCredits ] = useState({ mail: "", password: ""});
+
+    const history = useHistory();
+
 
     const updatePass = (password: string) => {
         setCredits(
@@ -18,22 +20,22 @@ export function LoginPage() {
         )
     };
 
-    const updateEmail = (email: string) => {
+    const updateEmail = (mail: string) => {
         setCredits(
             {
                 ...credits,
-                email
+                mail
             }
         )
     };
 
-    const tryLogin = (email: string) => {
+    const tryLogin = () => {
         login(credits).then(correct => {
-            console.log(correct);
+            history.push("/crm/products/");
         });
     };
 
-    let disabled = credits.email === "" || credits.password === "";
+    let disabled = credits.mail === "" || credits.password === "";
 
     return (
         <Container>
@@ -44,7 +46,7 @@ export function LoginPage() {
                 Ещё нет аккаунта?
             </Link>
             {
-                (disabled) ? null : <button className={styles.ActionButton}>Войти</button>
+                (disabled) ? null : <button className={styles.ActionButton} onClick={tryLogin}>Войти</button>
             }
         </Container>
     )
@@ -52,7 +54,9 @@ export function LoginPage() {
 
 export function RegisterPage() {
 
-    const [ credits, setCredits ] = useState({ email: "", password: "", name: ""});
+    const [ credits, setCredits ] = useState({ mail: "", password: "", name: ""});
+
+    const history = useHistory();
 
     const updatePass = (password: string) => {
         setCredits(
@@ -63,11 +67,11 @@ export function RegisterPage() {
         )
     };
 
-    const updateEmail = (email: string) => {
+    const updateEmail = (mail: string) => {
         setCredits(
             {
                 ...credits,
-                email
+                mail
             }
         )
     };
@@ -81,13 +85,13 @@ export function RegisterPage() {
         )
     };
 
-    const tryRegister = (email: string) => {
-        login(credits).then(correct => {
-            console.log(correct);
+    const tryRegister = () => {
+        register(credits).then((correct: any) => {
+            history.push("/crm/add-social/");
         });
     };
 
-    let disabled = credits.email === "" || credits.password === "" || credits.name === "";
+    let disabled = credits.mail === "" || credits.password === "" || credits.name === "";
 
     return (
         <Container>
@@ -98,6 +102,9 @@ export function RegisterPage() {
             <Link to="/crm/login/" className={styles.NoAccount}>
                 Уже есть аккаунт? Войти
             </Link>
+            {
+                (disabled) ? null : <button className={styles.ActionButton} onClick={tryRegister}>Зарегестрироваться</button>
+            }
         </Container>
     )
 }
@@ -114,6 +121,7 @@ export function AddSocialPage() {
 export function CallbackVkAuth() {
 
     const location = useLocation();
+    const history = useHistory();
 
     let access_token = null;
 
@@ -127,12 +135,14 @@ export function CallbackVkAuth() {
     if (access_token === null) {
         return <Redirect to="/crm/login/"/>
     }
-    
-    console.log(access_token);
+
+    add_vk({ "vk_token": access_token }).then(
+        _ => history.push("/crm/products/")
+    )
 
     return (
         <Container>
-            
+            Загрузка...
         </Container>
     )
 }
