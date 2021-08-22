@@ -4,7 +4,7 @@ import { DeliveryField } from "./Delivery";
 import { Selector } from "./Selector";
 import { useState } from "react";
 
-export default function Offer({ productid }: {productid: any}) {
+export default function Offer({ productid, price }: any) {
 
     const [ buyProductParams, setProductParams ] = useState({ delivery: "post", size: "s", productid });
 
@@ -57,7 +57,7 @@ export default function Offer({ productid }: {productid: any}) {
             </OfferStep>
             <OfferStep index={3} showline={false} >
                 <h4 className={styles.OfferTitle}>Оформление заказа</h4>
-                <span className={styles.Total}>Итого: <span className={styles.PriceTotal}>2 999 ₽</span></span>
+                <span className={styles.Total}>Итого: <span className={styles.PriceTotal}>{price} ₽</span></span>
                 <OrderCompleteButton params={buyProductParams} />
             </OfferStep>
         </div>

@@ -11,6 +11,7 @@ body {
   --color-text-secondary: #747474;
   --color-block: #F3F3F3;
   --color-bold-block: #999999;
+  --color-medium-block: #DDDDDD;
 }
 
 h1 {

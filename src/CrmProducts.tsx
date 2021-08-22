@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useParams, Redirect } from "react-router-dom";
 import styles from "./CrmProducts.module.css";
-
+import { add_product } from "./Api";
 
 export function CrmProductAdd() {
 
@@ -63,15 +63,9 @@ export function CrmProductAdd() {
 
     const postNewItem = () => {
 
-        fetch("http://192.168.43.81:8085/product", {
-            method: "POST",
-            body: JSON.stringify(addParams),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        add_product(addParams)
 
-        console.log(addParams);
+        //console.log(addParams);
     };
 
     const buttonDisabled = addParams.name === "" || addParams.main_photo === "";

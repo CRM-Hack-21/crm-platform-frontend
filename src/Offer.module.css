@@ -67,3 +67,8 @@
 .PriceTotal {
     font-weight: 600;
 }
+
+.OrderCompleteButton:hover {
+    background: var(--color-medium-block);
+    cursor: pointer;
+}

@@ -3,6 +3,9 @@ import { useParams, Redirect } from "react-router-dom";
 import styles from "./Product.module.css";
 import Offer from "./Offer";
 
+import { get_good } from "./Api";
+import { useQuery } from 'react-query';
+
 interface ProductProps {
     itemid?: string
 }
@@ -18,15 +21,24 @@ export default function ProductPage() {
     return Product(params)
 }
 
-function Product({ itemid}: ProductProps) {
+function Product({ itemid }: any) {
+
+    const { data, isLoading } = useQuery(['good', itemid], () => get_good({ 'id': itemid }));
+
+    if (isLoading) {
+        return (
+            <span>"Loading"</span>
+        )
+    }
+
     return (
         <div className={styles.Product}>
             <hgroup>
-                <h5 className={styles.Seller}>Shop name</h5>
-                <h1 className={styles.Name}>Product name</h1>
+                <h5 className={styles.Seller}>{data.seller_name}</h5>
+                <h1 className={styles.Name}>{data.name}</h1>
             </hgroup>
-            <ImageBlock imageUrl="/img/dev-asset/mvp-1.jpg" />
-            <Offer productid={itemid} />
+            <ImageBlock imageUrl={data.main_photo_id} />
+            <Offer productid={itemid} price={data.price} />
         </div>
     )
 }
