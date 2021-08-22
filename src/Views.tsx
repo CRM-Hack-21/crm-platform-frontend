@@ -5,7 +5,7 @@ import { CrmContainer, GeneralContainer } from "./GeneralContainer";
 import { OnMapDelivery } from "./Delivery";
 import { CrmProductAdd } from "./CrmProducts";
 import Sidebar from "./CrmSidebar";
-import { LoginPage, RegisterPage, AddSocialPage, CallbackVkAuth } from "./CrmAuth";
+import { LoginPage, RegisterPage, AddSocialPage, CallbackVkAuth, CrmProducts } from "./CrmAuth";
 
 
 export default function Views() {
@@ -33,6 +33,7 @@ export default function Views() {
                         <CrmContainer>
                             <Sidebar />
                             <Switch>
+                                <Route exact path="/crm/products" component={CrmProducts} />
                                 <Route exact path="/crm/products/add/" component={CrmProductAdd} />
                             </Switch>
                         </CrmContainer>

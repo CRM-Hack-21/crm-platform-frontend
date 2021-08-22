@@ -7,7 +7,10 @@ export default function Sidebar() {
     return (
         <div className={styles.Sidebar}>
             <span className={styles.Title}>DAG CRM</span>
-            <NavLink className={styles.SidebarLink} to="/crm/products" >Каталог товаров</NavLink>
+
+            <NavLink exact className={styles.SidebarLink} activeClassName={styles.SidebarLinkActive} to="/crm/products/add/" >Добавить товар</NavLink>
+            <NavLink exact className={styles.SidebarLink} activeClassName={styles.SidebarLinkActive} to="/crm/products/" >Каталог товаров</NavLink>
+
         </div>
     )
 }

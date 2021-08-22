@@ -11,10 +11,13 @@
 .SidebarLink {
     padding: 12px 24px;
     margin: 10px 24px;
-    background: var(--color-block);
     border-radius: 12px;
     color: black;
     text-decoration: none;
+}
+
+.SidebarLink:hover, .SidebarLinkActive {
+    background: var(--color-block);
 }
 
 .Title {

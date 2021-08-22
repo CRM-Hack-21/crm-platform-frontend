@@ -32,8 +32,43 @@
     font-family: var(--font);
     color: #2787f5;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .ActionButton {
     color: black;
+}
+
+.ProductListing {
+    margin: 20px -10px;
+}
+
+.ProductItem {
+    display: inline-block;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--color-block);
+    color: black;
+    text-decoration: none;
+}
+
+.ProductItem img {
+    width: 100%;
+}
+
+.ProductItem h3 {
+    margin: 10px 0;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.ProductItem span {
+    font-size: 14px;
+}
+
+.ProductsPage {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
 }

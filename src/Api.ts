@@ -96,3 +96,42 @@ export async function add_product(vars: any) {
     let result = await response.json();
     return result;
 }
+
+export async function products_list(id: any) {
+
+    let uuid = localStorage.getItem('session');
+
+    if (uuid === null) {
+        throw Error("User not signed in!");
+    }
+
+    let response = await fetch(api_endpoint + "get_good_array?good=" + id, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Session': uuid
+        }
+    });
+
+    let result = await response.json();
+    return result;
+}
+
+
+export async function comp_info() {
+
+    let uuid = localStorage.getItem('session');
+
+    if (uuid === null) {
+        throw Error("User not signed in!");
+    }
+
+    let response = await fetch(api_endpoint + "info", {
+        headers: {
+            'Content-Type': 'application/json',
+            'Session': uuid
+        }
+    });
+
+    let result = await response.json();
+    return result;
+}

@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { Link, Redirect, useHistory, useLocation } from "react-router-dom";
 import styles from "./CrmAuth.module.css";
-import { login, register, add_vk } from "./Api";
+import { login, register, add_vk, add_product, products_list, comp_info } from "./Api";
+import { useQuery } from 'react-query';
 
 export function LoginPage() {
 
@@ -144,6 +145,50 @@ export function CallbackVkAuth() {
         <Container>
             Загрузка...
         </Container>
+    )
+}
+
+export function CrmProducts() {
+
+    const { data: info, isLoading: infoLoading } = useQuery('comp-info', () => comp_info());
+
+    if (infoLoading) {
+        return (<span>Loading..</span>)
+    }
+
+    if ("error" in info) {
+        return <Redirect to="/crm/login" />
+    }
+
+    return (
+        <div className={styles.ProductsPage}>
+            <h1>{info.name}</h1>
+            <span className={styles.ProducsTitle}>Товары на площадке</span>
+            <ProductListing comp_id={info._id} />
+        </div>
+    )
+}
+
+function ProductListing({ comp_id }: any) {
+    const { data, isLoading } = useQuery('products-crm', () => products_list(comp_id));
+
+    if (isLoading && !data) {
+        return (<span>Loading..</span>)
+    }
+    return (
+        <div className={styles.ProductListing}>
+            {data.map((v: any, i: number) => <ProductCardItem key={i} info={v} />)}
+        </div>
+    )
+}
+
+function ProductCardItem({ info }: any) {
+    return (
+        <a className={styles.ProductItem} href={info.url} target="_blank" rel="noreferrer" >
+            <h3>{info.name}</h3>
+            <img src={info.main_photo_id} />
+            <span>{info.price} руб</span>
+        </a>
     )
 }
 
